@@ -1,0 +1,87 @@
+body {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  margin: 1em; /* em is equal to current font size */
+  padding: 1em;
+  display: flex; /* flex means data is placed in a flex container which is like a net around your items */
+  justify-content: center;
+  align-items: center;
+  background-color: beige;
+}
+
+h1, h2, p {
+  color: #000; 
+  margin-bottom: 15px; 
+}
+
+.welcome-container {
+display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Arrange items in a column */
+  align-items: center; /* Center align items horizontally within container */
+  padding: 20px;
+}
+
+.logo img {
+  max-width: 100px; /* size of logo */
+  height: 100px;
+  display: block;
+  margin: 0 auto; /* center horizontally to page */
+}
+
+.header h1 {
+  font-size: 2em;
+}
+
+.subheader h2 {
+  font-size: 1.5em;
+}
+
+  .search-container {
+    display: flex;
+    align-items: center;
+    width: 400px; /* size of the search box */
+    margin: 0 auto; /* centre the form horizontally */
+    margin-bottom: 10px; /* add bottom margin to create space */
+  }
+  
+  .search-container input[type="text"] {
+    flex: 1; /* grow to fill remaining space */
+    padding: 8px; /* padding for input field */
+    font-size: 16px; /* font size for input field */
+    border: 2px solid #ccc; /* border for input field */
+    border-radius: 4px; /* Rounded corners */
+  }
+
+  .search-container button{
+    padding: 8px 16px; /* padding for button */
+    font-size: 16px; /* font size for button */
+    background-color: #000; /* background color for button */
+    color: #fff; /* text color for button */
+    border-radius: 4px; /* rounded corners */
+    margin-left: 10px; /* spacing between input and button */
+    cursor: pointer; /* show pointer cursor on hover */
+  }
+
+.radio-container {
+  display: flex;
+  margin: 0 auto; /* center horizontally to page */
+ justify-content: center;
+  align-items: center;
+} 
+
+.radio-container label {
+  margin-right: 10px; /* spacing between radio button and label */
+  cursor: pointer; /* show pointer cursor on hover */
+} 
+
+.radio-container input {
+  margin-right: 10px; /* spacing between radio button and label */
+  cursor: pointer; /* show pointer cursor on hover */
+} 
+
+.results-container {
+  display: flex;
+  align-items: left;
+  width: 400px; /* size of the space */
+  margin: 0 auto; /* centre the form horizontally */
+  margin-bottom: 10px; /* add bottom margin to create space */
+}
