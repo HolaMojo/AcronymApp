@@ -19,12 +19,17 @@ app.use(express.urlencoded({extended: true}));
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient();
 
-app.get('/demo', async function(req, res) {
+app.get('/', async function(req, res) {
+  await res.render('pages/home');
+});
 
-    var abbreviations = await prisma.post.findMany();
+
+// app.get('/demo', async function(req, res) {
+
+//     var abbreviations = await prisma.post.findMany();
   
-    console.log(abbreviations);
+//     console.log(abbreviations);
   
-    await res.render('pages/demo', { abbreviations: abbreviations });
-  });
-  
+//     await res.render('pages/demo', { abbreviations: abbreviations });
+//   });
+app.listen(8080); // dont delete this
