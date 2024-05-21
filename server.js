@@ -19,17 +19,29 @@ app.use(express.urlencoded({extended: true}));
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient();
 
-app.get('/', async function(req, res) {
-  await res.render('pages/home');
-});
-
-
-// app.get('/demo', async function(req, res) {
-
-//     var abbreviations = await prisma.post.findMany();
+// Homepage
+app.get('/', async function(req, res) {   
   
-//     console.log(abbreviations);
+  // Try-Catch for any errors
+  try {
+
+  // Get all abbreviations
+  const abbreviations = await prisma.simpleAF.findMany({
+          orderBy: [
+            {
+              abbreviation_id: 'desc'
+            }
+          ]
+  });
+  console.log(abbreviations);
+
+  // Render the homepage with all the abbreviations
+  await res.render('pages/home', { abbreviations: abbreviations });
+  } catch (error) {
+  res.render('pages/home');
+  console.log(error);
+  } });
+
   
-//     await res.render('pages/demo', { abbreviations: abbreviations });
-//   });
+
 app.listen(8080); // dont delete this
