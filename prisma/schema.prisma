@@ -16,8 +16,8 @@ datasource db {
 model SimpleAF {
   abbreviation_id      Int       @id @default(autoincrement())
   abbreviation         String
-  meaning              Text
-  keywords             Text
-  context              Text
-  email_for_questions  Text
+  meaning              String
+  keywords             String
+  context              String
+  email_for_questions  String
 }

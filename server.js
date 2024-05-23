@@ -21,7 +21,8 @@ const prisma = new PrismaClient();
 
 // Homepage
 app.get('/', async function(req, res) {   
-  
+
+
   // Try-Catch for any errors
   try {
 
@@ -42,13 +43,10 @@ app.get('/', async function(req, res) {
   console.log(error);
   } });
 
-  
-  // Redirect back to home
-  res.redirect('/');
-  } catch (error) {
-  console.log(error);
-  res.redirect('/');
-    }
-  });
+// New form page
+app.get('/new', function(req, res) {
+res.render('pages/new');
+});
+
 
 app.listen(8080); // dont delete this

@@ -24,13 +24,23 @@
         <div class="search-container">
         <input type="text" id="searchInput" name="Abbreviation" placeholder="Enter Abbreviation">
         <form action="/fetch-data" method="post">
-        <button onclick="search()">Find It</button>
+        <button id=searchButton onclick="search()">Find It</button>
         </form>
         </div> 
 
-          <div class="results-container">
-          <h4>Results: <span id="header-abbreviations"></span></h4>
-          </div>
+        <div class="results-container">
+        <h4 id ="hiddenText" style="display: none;">Results: <span id="header-abbreviations"></span></h4>
+        </div>
+
+        <script>
+          document.getElementById("searchButton").addEventListener("click", function() {
+          document.getElementById("hiddenText").style.display = "block";
+          });
+        </script>
+
+        <a href="new.ejs"> Add an abbreviation </a>
+
+        
 
       <!--
         <div class="radio-container">
@@ -45,31 +55,31 @@
     
     // To perform search
    function search() {
-          const searchInput = document.getElementById('searchInput').value.toLowerCase();
-          const resultsContainer = document.getElementById('header-abbreviations');
+    const searchInput = document.getElementById('searchInput').value.toLowerCase();
+    const resultsContainer = document.getElementById('header-abbreviations');
           resultsContainer.innerHTML = '';
           alert("Looking!");
       
-             // Filter abbreviations based on search input
-             const filteredAbbreviations = abbreviations.filter(abbr => {
-              return abbr.abbreviation.toLowerCase().includes(searchInput) ||
-                     abbr.meaning.toLowerCase().includes(searchInput) ||
-                     abbr.keywords.some(keyword => keyword.toLowerCase().includes(searchInput) ||
-                     abbr.context.some(keyword => keyword.toLowerCase().includes(searchInput));
+    // Filter abbreviations based on search input
+    const filteredAbbreviations = abbreviations.filter(abbr => {
+    return abbr.abbreviation.toLowerCase().includes(searchInput) ||
+           abbr.meaning.toLowerCase().includes(searchInput) ||
+           abbr.keywords.some(keyword => keyword.toLowerCase().includes(searchInput) ||
+           abbr.context.some(keyword => keyword.toLowerCase().includes(searchInput);
           });
       
-          // To display results
-        if (filteredAbbreviations.length === 0) {
-            resultsContainer.innerHTML = 'No results found.';} 
-            else {
-              filteredAbbreviations.forEach(abbr => {
-                  const resultElement = document.createElement('div');
-                  resultElement.innerHTML = `<strong>${abbr.abbreviation}</strong>: ${abbr.meaning}`;
-                  resultsContainer.appendChild(resultElement);
-              });
+    // To display results
+    if (filteredAbbreviations.length === 0) {
+        resultsContainer.innerHTML = 'No results found.';} 
+    else {
+        filteredAbbreviations.forEach(abbr => {
+        const resultElement = document.createElement('div');
+        resultElement.innerHTML = `<strong>${abbr.abbreviation}</strong>: ${abbr.meaning} : ${abbr.keywords} : ${abbr.context}`;
+        resultsContainer.appendChild(resultElement);
+        });
           }
       }
-      </script>
+  </script>
 
 </body>
 </html>
