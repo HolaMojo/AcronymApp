@@ -19,9 +19,9 @@ app.use(express.urlencoded({extended: true}));
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient();
 
-// Homepage
-app.get('/', async function(req, res) {   
-
+// Rooting the homepage
+app.get('/home', async function(req, res) {   
+  res.render ('pages/home');
 
   // Try-Catch for any errors
   try {
@@ -41,12 +41,46 @@ app.get('/', async function(req, res) {
   } catch (error) {
   res.render('pages/home');
   console.log(error);
-  } });
+  } 
+
+
+
+
 
 // New form page
 app.get('/new', function(req, res) {
 res.render('pages/new');
 });
 
+// Create a new abbreviation
+app.post('/new', async function(req, res) {
+    
+  // Try-Catch for any errors
+  try {
+      // Get the title and content from submitted form
+      const { abbreviation, meaning, keywords, context, email_for_questions } = req.body;
+  
+  // Reload page if empty title or content
+  if (!abbreviation || !meaning || !keywords || !context || !email_for_questions ) {
+  console.log("Unable to create new abbreviation, missing information");
+  res.render('pages/new');
+} else {
+
+  // Create abbreviation and store in database
+  const blog = await prisma.simpleAF.create({
+      data: { abbreviation, meaning, keywords, context, email_for_questions },
+  });
+
+  // Redirect back to the homepage
+  res.redirect('/');
+}
+} catch (error) {
+  console.log(error);
+  res.render('pages/new');
+}
+
+});
+
+});
 
 app.listen(8080); // dont delete this

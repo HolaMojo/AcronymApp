@@ -61,23 +61,6 @@ display: flex; /* Use flexbox for layout */
     cursor: pointer; /* show pointer cursor on hover */
   }
 
-.radio-container {
-  display: flex;
-  margin: 0 auto; /* center horizontally to page */
- justify-content: center;
-  align-items: center;
-} 
-
-.radio-container label {
-  margin-right: 10px; /* spacing between radio button and label */
-  cursor: pointer; /* show pointer cursor on hover */
-} 
-
-.radio-container input {
-  margin-right: 10px; /* spacing between radio button and label */
-  cursor: pointer; /* show pointer cursor on hover */
-} 
-
 .results-container {
   display: flex;
   align-items: left;
