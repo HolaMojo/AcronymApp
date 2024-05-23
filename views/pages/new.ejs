@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Abbreviation Finder for WOG terms</title>
+    <link rel="stylesheet" href="/css/SimpleAF.css"> 
+</head>
+
+<body>
+    <div class="welcome-container">
+        <div class="logo">
+          <img src="/images/logo.png" alt="Web App logo">
+        </div>
+
+        <div class="header">
+        <h1>Simple AF</h1>
+        </div>
+
+        <div class="form-subheading">
+        <h3>Submit a new abbreviation below</h3>
+        </div>
+
+        <!-- submit a new abbreviation -->
+        <div class="form-container">
+
+            <form method="post">
+                <fieldset>
+                  <label>
+                  Abbreviation
+                  <input type="string" name="abbreviation" placeholder="Enter your abbreviation in CAPITAL LETTERS" required >
+                  </label>
+                </fieldset>
+
+                <label>
+                Meaning 
+                <input type="text" name="meaning" placeholder="What does your abbreviation mean?" required >
+                </label>
+              
+                <label>
+                Associated Keywords
+                <tinput type="text" name="keywords" placeholder="Are there any keywrods associated with your abbreviation?" required >
+                </label>
+
+                <label>
+                Context
+                <textarea type="text" name="context" placeholder="Any backgrond on the abbreviation?" required ></textarea>
+                </label>
+
+                <label>
+                Who can people contact with questions?
+                <tinput type="text" name="email_for_questions" placeholder="Enter an email address" required >
+                </label>
+
+                <button type="submit">Save your Abbreviation</button>
+                
+            </form>
+        </div>
+
+         <!-- Back to homepage -->
+         <div class="cancel-form">
+          <a href="/">Take me back to the beginning </a>
+
+        </div>
+      </div>
+</body>
+</html>

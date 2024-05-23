@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Abbreviation Finder for SG Gov Service</title>
+    <title>Simple Abbreviation Finder for WOG terms</title>
     <link rel="stylesheet" href="/css/SimpleAF.css"> 
-    <script src="script.js"></script>
 </head>
 
 <body>
@@ -22,12 +21,16 @@
         <p>The AF (Abbreviation Finder) for all your WOG needs.</p>
         </div>
 
-        <hr>
         <div class="search-container">
         <input type="text" id="searchInput" name="Abbreviation" placeholder="Enter Abbreviation">
+        <form action="/fetch-data" method="post">
         <button onclick="search()">Find It</button>
+        </form>
         </div> 
-        </hr>
+
+          <div class="results-container">
+          <h4>Results: <span id="header-abbreviations"></span></h4>
+          </div>
 
       <!--
         <div class="radio-container">
@@ -35,14 +38,38 @@
         <label><input type="radio" name="option" value="option2">by meaning</label>
         </div> 
                 -->
-
-       <div class="results-container">
-       <h4>Results: <span id="header-abbreviations"></span></h4>
-       </div>
        
     </div> 
 
+    <script>
     
+    // To perform search
+   function search() {
+          const searchInput = document.getElementById('searchInput').value.toLowerCase();
+          const resultsContainer = document.getElementById('header-abbreviations');
+          resultsContainer.innerHTML = '';
+          alert("Looking!");
+      
+             // Filter abbreviations based on search input
+             const filteredAbbreviations = abbreviations.filter(abbr => {
+              return abbr.abbreviation.toLowerCase().includes(searchInput) ||
+                     abbr.meaning.toLowerCase().includes(searchInput) ||
+                     abbr.keywords.some(keyword => keyword.toLowerCase().includes(searchInput) ||
+                     abbr.context.some(keyword => keyword.toLowerCase().includes(searchInput));
+          });
+      
+          // To display results
+        if (filteredAbbreviations.length === 0) {
+            resultsContainer.innerHTML = 'No results found.';} 
+            else {
+              filteredAbbreviations.forEach(abbr => {
+                  const resultElement = document.createElement('div');
+                  resultElement.innerHTML = `<strong>${abbr.abbreviation}</strong>: ${abbr.meaning}`;
+                  resultsContainer.appendChild(resultElement);
+              });
+          }
+      }
+      </script>
 
 </body>
 </html>

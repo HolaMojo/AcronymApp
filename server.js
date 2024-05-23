@@ -43,5 +43,12 @@ app.get('/', async function(req, res) {
   } });
 
   
+  // Redirect back to home
+  res.redirect('/');
+  } catch (error) {
+  console.log(error);
+  res.redirect('/');
+    }
+  });
 
 app.listen(8080); // dont delete this
