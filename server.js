@@ -2,8 +2,8 @@
 require("dotenv").config();
 
 // Needed for Express
-var express = require('express')
-var app = express()
+const express = require('express');
+const app = express();
 
 // Needed for EJS
 app.set('view engine', 'ejs');
@@ -20,67 +20,49 @@ const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient();
 
 // Rooting the homepage
-app.get('/home', async function(req, res) {   
-  res.render ('pages/home');
-
+app.get('/', async function(req, res) {   
   // Try-Catch for any errors
   try {
+    // Get all abbreviations
+    const abbreviations = await prisma.simpleAF.findMany({
+    orderBy: [
+          {
+            abbreviation_id: 'desc'
+          }
+        ]
+      });
+      console.log(abbreviations);
 
-  // Get all abbreviations
-  const abbreviations = await prisma.simpleAF.findMany({
-          orderBy: [
-            {
-              abbreviation_id: 'desc'
-            }
-          ]
+      // Render the homepage with all the abbreviations
+      res.render('pages/home', { abbreviations: abbreviations });
+      } catch (error) {
+      // Handle errors
+      console.error("Error:", error);
+      res.render('pages/home', { error: "An error occurred while fetching abbreviations." });
+    }
   });
-  console.log(abbreviations);
 
-  // Render the homepage with all the abbreviations
-  await res.render('pages/home', { abbreviations: abbreviations });
-  } catch (error) {
-  res.render('pages/home');
-  console.log(error);
-  } 
+// Search for abbreviation
+app.get('/fetch-data', async function(req, res) {
 
-
-
-
-
-// New form page
-app.get('/new', function(req, res) {
-res.render('pages/new');
-});
-
-// Create a new abbreviation
-app.post('/new', async function(req, res) {
+// Get search input 
+const { SearchInput } = req.query; // Use req.query for GET requests to access query parameters
     
-  // Try-Catch for any errors
-  try {
-      // Get the title and content from submitted form
-      const { abbreviation, meaning, keywords, context, email_for_questions } = req.body;
-  
-  // Reload page if empty title or content
-  if (!abbreviation || !meaning || !keywords || !context || !email_for_questions ) {
-  console.log("Unable to create new abbreviation, missing information");
-  res.render('pages/new');
-} else {
-
-  // Create abbreviation and store in database
-  const blog = await prisma.simpleAF.create({
-      data: { abbreviation, meaning, keywords, context, email_for_questions },
+    // Check if search input is provided
+    if (!SearchInput) {
+      console.log("Search input is empty");
+      // Render an error page or redirect to a different route
+      // return res.render('pages/error', { error: "Please enter a search query." });
+      return res.json([])
+    }
+    
+    // Your logic for fetching data based on the search input
+    const searchResults = await prisma.simpleAF.findMany ({
+    abbreviation: 'searchInput'
+    })
+    // Render a page to display the search results
+    // res.render('pages/searchResults', { results: searchResults });
+    return res.json(searchResults)
   });
 
-  // Redirect back to the homepage
-  res.redirect('/');
-}
-} catch (error) {
-  console.log(error);
-  res.render('pages/new');
-}
-
-});
-
-});
-
-app.listen(8080); // dont delete this
+app.listen(8080);
