@@ -35,9 +35,9 @@
         function search() {
         const searchInput = document.getElementById('searchInput').value.toLowerCase();
         const resultsContainer = document.getElementById('searchResults');
-        fetch('/fetch-data?SearchInput=' + searchInput)
+        // fetch('/fetch-data?SearchInput=' + searchInput)
         resultsContainer.innerHTML = '';
-        alert("Looking!");
+        alert(searchInput);
         }
         
         </script>

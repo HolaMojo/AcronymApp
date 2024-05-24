@@ -19,8 +19,10 @@ app.use(express.urlencoded({extended: true}));
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient();
 
+
 // Rooting the homepage
 app.get('/', async function(req, res) {   
+
   // Try-Catch for any errors
   try {
     // Get all abbreviations
@@ -37,11 +39,36 @@ app.get('/', async function(req, res) {
       res.render('pages/home', { abbreviations: abbreviations });
       } catch (error) {
       // Handle errors
-      console.error("Error:", error);
       res.render('pages/home', { error: "An error occurred while fetching abbreviations." });
+      console.log(error);
     }
   });
 
+
+   // Try-Catch for any errors
+   try {
+    // Get all abbreviations
+    console.log("HERE")
+    const searchInput = "AOR"
+    const searchResults = prisma.SimpleAF.findUnique({
+      where: {
+        abbreviation: true,  
+          contains: 'searchInput'}
+      });
+      console.log(searchInput);
+      console.log(searchResults);
+
+
+
+      // Render the homepage with all the abbreviations
+      // res.render('pages/home', { abbreviations: abbreviations });
+      } catch (error) {
+      // Handle errors
+      console.error("Error:", error);
+     // res.render('pages/home', { error: "An error occurred while fetching abbreviations." });
+    }
+
+  
 // Search for abbreviation
 // app.get('/fetch-data', async function(req, res) {
 
