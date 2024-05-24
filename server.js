@@ -24,7 +24,7 @@ app.get('/', async function(req, res) {
   // Try-Catch for any errors
   try {
     // Get all abbreviations
-    const abbreviations = await prisma.simpleAF.findMany({
+    const abbreviations = await prisma.SimpleAF.findMany({
     orderBy: [
           {
             abbreviation_id: 'desc'
@@ -46,18 +46,18 @@ app.get('/', async function(req, res) {
 app.get('/fetch-data', async function(req, res) {
 
 // Get search input 
-const { SearchInput } = req.query; // Use req.query for GET requests to access query parameters
+const { searchInput } = req.query; // Use req.query for GET requests to access query parameters
     
     // Check if search input is provided
-    if (!SearchInput) {
-      console.log("Search input is empty");
-      // Render an error page or redirect to a different route
-      // return res.render('pages/error', { error: "Please enter a search query." });
-      return res.json([])
-    }
+    // if (!searchInput) {
+    //   console.log("Search input is empty");
+    //   // Render an error page or redirect to a different route
+    //   // return res.render('pages/error', { error: "Please enter a search query." });
+    //   return res.json([])
+    // }
     
-    // Your logic for fetching data based on the search input
-    const searchResults = await prisma.simpleAF.findMany ({
+   // Your logic for fetching data based on the search input
+    const searchResults = await prisma.SimpleAF.findMany ({
     abbreviation: 'searchInput'
     })
     // Render a page to display the search results
