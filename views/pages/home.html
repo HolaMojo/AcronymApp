@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Abbreviation Finder for WOG terms</title>
+    <link rel="stylesheet" href="/css/SimpleAF.css"> 
+</head>
+
+<body>
+    <div class="welcome-container">
+        <div class="logo">
+          <img src="/images/logo.png" alt="Web App logo">
+        </div>
+
+        <div class="header">
+        <h1>Simple AF</h1>
+        </div>
+
+        <div class="subheading">
+        <p>The AF (Abbreviation Finder) for all your WOG needs.</p>
+        </div>
+
+        <div class="search-container">
+        <input type="text" id="searchInput" name="Abbreviation" placeholder="Enter Abbreviation">
+        <button id=searchButton onclick="search()">Find It</button>
+        </div> 
+
+        <div class="results-container">
+        <h4 id ="hiddenText" style="display: none;">Results: <span id="searchResults"></span></h4>
+        </div>
+
+        <script>
+
+        function search() {
+        const searchInput = document.getElementById('searchInput').value.toLowerCase();
+        const resultsContainer = document.getElementById('searchResults');
+        resultsContainer.innerHTML = '';
+        alert(searchInput);
+        }
+        
+        </script>
+
+       <!--- <a href="new.ejs"> Add an abbreviation </a> -->
+       
+    </div> 
+
+</body>
+</html>

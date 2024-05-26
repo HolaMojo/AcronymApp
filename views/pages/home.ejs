@@ -4,8 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Abbreviation Finder for WOG terms</title>
-    <link rel="stylesheet" href="/css/SimpleAF.css"> 
+    <link rel="stylesheet" href="/css/SimpleAF.css">
 </head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-922JBW3S6N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-922JBW3S6N');
+</script>
 
 <body>
     <div class="welcome-container">
@@ -21,30 +31,51 @@
         <p>The AF (Abbreviation Finder) for all your WOG needs.</p>
         </div>
 
+        <hr>
         <div class="search-container">
-        <input type="text" id="searchInput" name="Abbreviation" placeholder="Enter Abbreviation">
+        <form action="/search" method="post">
+        <input type="text" id="searchInput" name="query" placeholder="Enter Abbreviation">
         <button id=searchButton onclick="search()">Find It</button>
+        </form>
         </div> 
-
-        <div class="results-container">
-        <h4 id ="hiddenText" style="display: none;">Results: <span id="searchResults"></span></h4>
-        </div>
+        </hr>
 
         <script>
 
-        function search() {
-        const searchInput = document.getElementById('searchInput').value.toLowerCase();
-        const resultsContainer = document.getElementById('searchResults');
-        // fetch('/fetch-data?SearchInput=' + searchInput)
-        resultsContainer.innerHTML = '';
-        alert(searchInput);
-        }
-        
-        </script>
+          function search() {
+          const searchInput = document.getElementById('searchInput').value.toLowerCase();
+          const resultsContainer = document.getElementById('searchResults');
+          resultsContainer.innerHTML = '';
+          alert(searchInput);
+          }
+          
+          </script>
 
-       <!--- <a href="new.ejs"> Add an abbreviation </a> -->
-       
-    </div> 
+        <div class="new-abb">
+        <a href="new.html">Create New Abbreviation</a>
+        </div>
+
+        <div class="results-container">
+        <h4 id ="hiddenText" style="display: none;">Results: <span id="header-abbreviations"></span></h4>
+        </div>
+   
+           <script>
+             document.getElementById("searchButton").addEventListener("click", function() {
+             document.getElementById("hiddenText").style.display = "block";
+             });
+           </script>
+
+        <footer>
+        <p><i>
+        Disclaimer: This website is created for learning purposes only. 
+        </br> The information provided here should not be considered professional advice. 
+        </br> Please note that we make no guarantees regarding the accuracy, completeness, or reliability of the contents of this website. 
+        </br> Any actions you take based on the contents of this website are at your own risk. 
+        </br> We are not liable for any losses or damages incurred from the use of this website.
+        </i></p>
+        </footer>
+
+    </div> <!--welcome-container ender-->
 
 </body>
 </html>

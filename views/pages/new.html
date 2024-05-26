@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Abbreviation Finder for WOG terms</title>
+    <link rel="stylesheet" href="SimpleAF.css"> 
+
+    <script>
+      function clearForm() {
+          var allFieldsCompleted = true;
+          var requiredFields = document.querySelectorAll('[required]');
+          requiredFields.forEach(function(field) {
+              if (field.value === '') {
+                  allFieldsCompleted = false;
+              }
+          });
+  
+          if (allFieldsCompleted) {
+              document.getElementById("new-form").reset();
+              alert("Thank you for adding a new abbreviation!");
+          } else {
+              alert("Please fill in all required fields!");
+          }
+      }
+  </script>
+
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-922JBW3S6N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-922JBW3S6N');
+</script>
+
+<body>
+  <div class="welcome-container">
+      
+   <div class="logo">
+   <img src="logo.png" alt="Web App logo">
+   </div>
+
+   <div class="header">
+   <h1>Simple AF</h1>
+   </div>
+
+   <div class="subheading"> 
+   <p>The AF (Abbreviation Finder) for all your WOG needs.</p>
+   </div>
+   
+      <!-- submit a new abbreviation -->
+      <div class="form-container">
+
+        <form id="new-form" method="post">
+
+          <h3>Submit a new abbreviation</h3>
+          <p>Required fields are followed by
+          <strong><span aria-label="required">*</span></strong>.
+          </p>
+
+            <ul>
+            <section>
+
+            <li>
+            <label for="abbreviation">
+            <span>Abbreviation:</span>
+            <strong><span aria-label="required">*</span></strong>
+            </label>
+            <input type="string" id="abb" name="abbreviation" required />
+            </li>
+
+            <li>
+            <label for="meaning">
+            <span>Meaning:</span>
+            <strong><span aria-label="required">*</span></strong>
+            </label>
+            <input type="string" id="mean" name="meaning" required />
+            </li>
+
+            <li>
+            <label for="keywords">Keywords:</label>
+            <input type="string" id="key" name="keyword" />
+            </li>
+
+            <li>
+            <label for="context">Context:</label>
+            <textarea type="string" id="context" name="context" placeholder="provide some background to help people understand the abbreviation"></textarea>
+            </li>
+              
+            <li>
+            <label for="contact">
+            <span>Email for any follow up questions:</span>
+            <strong><span aria-label="required">*</span></strong>
+            </label>
+            <input type="email" id="mail" name="contact" required />
+            </li>
+
+            </section>
+
+            <br>
+
+            <li class="button">
+            <button type="submit" onclick="clearForm()">Add your abbreviation</button>
+            </li>
+
+            </ul>
+        </form>
+      </div>
+            
+         <!-- Back to homepage -->
+         <div class="cancel-form">
+         <a href="index.html">Take me back to the beginning </a>
+         </div>
+
+        <footer>
+        <p><i>
+        Disclaimer: This website is created for learning purposes only. 
+        </br> The information provided here should not be considered professional advice. 
+        </br> Please note that we make no guarantees regarding the accuracy, completeness, or reliability of the contents of this website. 
+        </br> Any actions you take based on the contents of this website are at your own risk. 
+        </br> We are not liable for any losses or damages incurred from the use of this website.
+        </i></p>
+        </footer>
+      
+  </div>
+</body>
+</html>

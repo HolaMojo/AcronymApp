@@ -33,40 +33,64 @@ app.get('/', async function(req, res) {
           }
         ]
       });
-      console.log(abbreviations);
+      // console.log(abbreviations);
 
       // Render the homepage with all the abbreviations
       res.render('pages/home', { abbreviations: abbreviations });
       } catch (error) {
       // Handle errors
       res.render('pages/home', { error: "An error occurred while fetching abbreviations." });
-      console.log(error);
+      // console.log(error);
     }
   });
 
+  // Route to render the search form
+  app.get('/search', (req, res) => {
+  res.render('search');
+  });
+
+// Route to handle form submission and search query
+app.post('/search', async (req, res) => {
+  const searchInput = req.body.searchInput; // Extract search input from request body
+  try {
+    const searchResults = await prisma.simpleAF.findMany({
+      where: {
+        OR: [
+          { abbreviation: { contains: searchInput, mode: 'insensitive' } },
+          { meaning: { contains: searchInput, mode: 'insensitive' } },
+          { keywords: { contains: searchInput, mode: 'insensitive' } },
+          { context: { contains: searchInput, mode: 'insensitive' } }
+        ]
+      }
+    });
+    res.render('/pages/home', { results: searchResults });
+    console.log (searchResults)
+    } catch (error) {
+    console.error('Error searching for data:', error);
+    res.status(500).send('Search Result Error');
+  }
+});
 
    // Try-Catch for any errors
-   try {
-    // Get all abbreviations
-    console.log("HERE")
-    const searchInput = "AOR"
-    const searchResults = prisma.SimpleAF.findUnique({
-      where: {
-        abbreviation: true,  
-          contains: 'searchInput'}
-      });
-      console.log(searchInput);
-      console.log(searchResults);
+  //  try {
+  //   // Search all abbreviations
+  //   console.log("HERE")
+  //   const searchInput = "AOR"
+  //   const searchResults = prisma.SimpleAF.findUnique({
+  //     where: {  
+  //       abbreviation: searchInput
+  //     }
+  //     });
 
+  //     console.log(searchResults);
 
-
-      // Render the homepage with all the abbreviations
-      // res.render('pages/home', { abbreviations: abbreviations });
-      } catch (error) {
-      // Handle errors
-      console.error("Error:", error);
-     // res.render('pages/home', { error: "An error occurred while fetching abbreviations." });
-    }
+  //     // Render the homepage with all the abbreviations
+  //     // res.render('pages/home', { abbreviations: abbreviations });
+  //     } catch (error) {
+  //     // Handle errors
+  //     console.error("Error:", error);
+  //    // res.render('pages/home', { error: "An error occurred while fetching abbreviations." });
+ //   }
 
   
 // Search for abbreviation
