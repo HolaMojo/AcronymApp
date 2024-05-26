@@ -63,7 +63,8 @@ app.post('/search', async (req, res) => {
         ]
       }
     });
-    res.render('/pages/home', { results: searchResults });
+    res.render('pages/home', { results: searchResults });
+    console.log(searchInput)
     console.log (searchResults)
     } catch (error) {
     console.error('Error searching for data:', error);
@@ -71,49 +72,5 @@ app.post('/search', async (req, res) => {
   }
 });
 
-   // Try-Catch for any errors
-  //  try {
-  //   // Search all abbreviations
-  //   console.log("HERE")
-  //   const searchInput = "AOR"
-  //   const searchResults = prisma.SimpleAF.findUnique({
-  //     where: {  
-  //       abbreviation: searchInput
-  //     }
-  //     });
-
-  //     console.log(searchResults);
-
-  //     // Render the homepage with all the abbreviations
-  //     // res.render('pages/home', { abbreviations: abbreviations });
-  //     } catch (error) {
-  //     // Handle errors
-  //     console.error("Error:", error);
-  //    // res.render('pages/home', { error: "An error occurred while fetching abbreviations." });
- //   }
-
-  
-// Search for abbreviation
-// app.get('/fetch-data', async function(req, res) {
-
-// Get search input 
-// const searchInput = req.query; // Use req.query for GET requests to access query parameters
-    
-//     // Check if search input is provided
-//     if (!searchInput) {
-//       console.log("Search input is empty");
-//       // Render an error page or redirect to a different route
-//       // return res.render('pages/error', { error: "Please enter a search query." });
-//       return res.json([])
-    // }
-    
-   // Your logic for fetching data based on the search input
-    // const searchResults = await prisma.SimpleAF.findMany ({
-    // abbreviation: 'searchInput'
-    // })
-    // // Render a page to display the search results
-    // // res.render('pages/searchResults', { results: searchResults });
-    // return res.json(searchResults)
-  // });
 
 app.listen(8080);

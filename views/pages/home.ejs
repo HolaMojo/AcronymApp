@@ -40,30 +40,26 @@
         </div> 
         </hr>
 
-        <script>
-
-          function search() {
-          const searchInput = document.getElementById('searchInput').value.toLowerCase();
-          const resultsContainer = document.getElementById('searchResults');
-          resultsContainer.innerHTML = '';
-          alert(searchInput);
-          }
-          
-          </script>
-
-        <div class="new-abb">
-        <a href="new.html">Create New Abbreviation</a>
-        </div>
-
         <div class="results-container">
         <h4 id ="hiddenText" style="display: none;">Results: <span id="header-abbreviations"></span></h4>
-        </div>
-   
+        </div>  
+
            <script>
+
+            function search() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const resultsContainer = document.getElementById('searchResults');
+            resultsContainer.innerHTML = ''; // Clear previous search results
+            }
+            
              document.getElementById("searchButton").addEventListener("click", function() {
              document.getElementById("hiddenText").style.display = "block";
              });
            </script>
+
+        <div class="new-abb">
+        <a href="new.html">Create New Abbreviation</a>
+        </div>
 
         <footer>
         <p><i>
